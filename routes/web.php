@@ -31,11 +31,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     
     // Post Routes
     
-    Route::post('/edit' , [AdminController::class, 'edit_user'])->name('admin.edit_user');
+    Route::post('/edit/user' , [AdminController::class, 'edit_user'])->name('admin.edit_user');
     Route::post('/register' , [AdminController::class, 'create_user'])->name('admin.create_user');
     Route::post('/product' , [AdminController::class, 'create_product'])->name('admin.create_product');
+    Route::post('/category' , [AdminController::class, 'create_category'])->name('admin.create_category');
     Route::post('/update' , [AdminController::class, 'update_user'])->name('admin.update_user');
     Route::post('/delete' , [AdminController::class, 'delete_user'])->name('admin.delete_user');
+    Route::post('/edit/product' , [AdminController::class, 'edit_product'])->name('admin.edit_product');
 });
 
  // --------

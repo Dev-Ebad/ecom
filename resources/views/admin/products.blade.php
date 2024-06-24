@@ -8,7 +8,7 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addproduct">
               Add Product
             </button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addproduct">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_category">
               Add category
             </button>
 
@@ -19,7 +19,7 @@
                     <div class="card-title">Products</div>
                   </div>
                   <div class="card-body">
-                    <table class="table table-striped mt-3">
+                    <table class="table-responsive table-striped mt-3">
                       <thead>
                         <tr>
                           <th>ID</th>
@@ -43,13 +43,13 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @if(!empty($products))
+                        @foreach ($products as $item)
                         <tr>
-                          @if(!empty($products))
-                          @foreach ($products as $item)
                           <td>{{isset($item->id) && !empty($item->id) ? $item->id : ''}}</td> 
                           <td>{{isset($item->name) && !empty($item->name) ? $item->name : ''}}</td> 
                           <td>{{isset($item->description) && !empty($item->description) ? $item->description : ''}}</td> 
-                          <td>{{isset($item->category) && !empty($item->category) ? $item->category : ''}}</td> 
+                          <td>{{isset($item->category->cat_name) && !empty($item->category->cat_name) ? $item->category->cat_name : ''}}</td> 
                           <td>{{isset($item->price) && !empty($item->price) ? $item->price : ''}}</td> 
                           <td>{{isset($item->discount_price) && !empty($item->discount_price) ? $item->discount_price : ''}}</td> 
                           <td>{{isset($item->SKU) && !empty($item->SKU) ? $item->SKU : ''}}</td> 
@@ -64,14 +64,14 @@
                           <td>{{isset($item->reviews) && !empty($item->reviews) ? $item->reviews : ''}}</td> 
                           <td>{{isset($item->tags) && !empty($item->tags) ? $item->tags : ''}}</td> 
                           <td>
-                            <a href="javascript:void(0)" onclick="Edit_user('{{isset($item->id) ? $item->id : ''}}')" class="btn btn-success">Edit</a>
-                            <a href="javascript:void(0)" onclick="Delete_user('{{isset($item->id) ? $item->id : ''}}')" class="btn btn-danger">Delete</a>
+                            <a href="javascript:void(0)" onclick="Edit_product('{{isset($item->id) ? $item->id : ''}}')" class="btn btn-success">Edit</a>
+                            <a href="javascript:void(0)" onclick="Delete_product('{{isset($item->id) ? $item->id : ''}}')" class="btn btn-danger">Delete</a>
                           </td> 
-                          @endforeach
-                          @endif
                         </tr>
+                        @endforeach
+                        @endif
                       </tbody>
-                   
+                    </table>
                   </div>
                 </div>
               </div>

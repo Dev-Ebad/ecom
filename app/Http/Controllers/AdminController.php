@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
+
 use Facade\FlareClient\Http\Response;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -80,7 +83,7 @@ class AdminController extends Controller
         if($request->hasFile('profile')){
             $image = $request->file('profile');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('storage/app/uplods', $imageName);
+            $image->storeAs('storage/app/uploads', $imageName);
         }
 
         $user_data['profile'] = $imageName;
@@ -98,15 +101,65 @@ class AdminController extends Controller
         }
     }
 
-    // fetch product
 
+    // fetch product
     public function products(){
         $products = Product::all();
         return view('admin.products')->with(compact('products'));
     }
 
+    // add product
     public function create_product(Request $request){
-        dd($request->all());
+        // dd($request->all());
+        // $request->validate([
+        //     'name' => 'required',
+        //     'description' => 'required',
+        //     'price' => 'required',
+        //     'discount_price' => 'required',
+        //     'stock_quantity' => 'required',
+        //     'weight' => 'required',
+        //     'attributes' => 'required',
+        //     'status' => 'required',
+        //     'featured' => 'required',
+        //     'rating' => 'required',
+        //     'reviews' => 'required',
+        //     'tags' => 'required',
+        // ]);
+        $allFiles = [];
+        $product_data = $request->except('images');
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $file) {
+                $imageName = $file->getClientOriginalName();
+                $file->storeAs('storage/app/uploads', $imageName);
+                $allFiles[] = $imageName;
+            }
+        }else{
+            $allFiles = [];
+        }
+         
+        $product_data['images'] = json_encode($allFiles);
+        // dd($product_data);
+        Product::create($product_data);
+        return back()->with('success' , 'Product added successfully');
+    }
+
+    // add category
+    public function create_category(Request $request){        
+        $request->validate([
+            'cat_name' => 'required',
+            'cat_description' => 'required'
+        ]);
+
+       Category::create($request->all());
+        return back()->with('status' , 'category added successfully');
+    }
+
+    public function edit_product(Request $request){
+        $product_data = Product::with('category')->where('id' , $request->product_id)->get();
+        // $product_images = json_decode($product_data->images);
+        print_r($product_data); die;
+        $view =  view('admin.includes.edit_product',compact('product_data'))->render();
+        return $view;
     }
 
 

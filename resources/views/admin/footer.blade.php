@@ -27,6 +27,24 @@
 
   }
 
+  
+  function Edit_product(id){
+    console.log(id);
+    $.ajax({
+      url : "{{route('admin.edit_product')}}",
+      method : "POST",
+      data : {
+        product_id : id,
+        _token : "{{csrf_token()}}"
+      },
+      success : function(res){
+        console.log(res);
+        $('#edit_product').modal('show');
+        $('#edit_product_appnd').append(res);
+      }
+    })
+  }
+
 
   // user delete
 
@@ -46,6 +64,68 @@
     // })
     $('#deleteModal').modal('show');
   }
+
+  // function check_empty(){
+
+  //   let isValid = true;
+  //   if($('#name').val() == '' || $('#description').val() == '' ){
+  //     $('#name_error').removeClass('d-none').text('This field is required');
+  //     isValid = false;
+  //   }else if($('#description').val() == ''){
+  //     $('#description_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else if($('#price').val() == ''){
+  //     $('#price_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else if($('#discount_price').val() == ''){
+  //     $('#discount_price_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else if($('#SKU').val() == ''){
+  //     $('#SKU_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else if($('#stock_quantity').val() == ''){
+  //     $('#stock_quantity_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else if($('#weight').val() == ''){
+  //     $('#weight_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else if($('#dimentions').val() == ''){
+  //     $('#dimensions_error').removeClass('d-none').text('This field is required');
+  //     isValid = false
+  //   }else{
+  //     isValid = true;
+  //   }
+
+  //   if(isValid == true){
+  //     $('#product_form').submit();
+  //   }
+
+  // }
+
+  // function check_empty() {
+  //         let isValid = true;
+  //           if ($('#name').val().trim() === '') {
+  //               $('#name_error').removeClass('d-none');
+  //               isValid = false;
+  //           } else {
+  //               $('#name_error').addClass('d-none');
+  //               isValid = true
+  //           }
+  //           if ($('#description').val().trim() === '') {
+  //               $('#description_error').removeClass('d-none');
+  //               isValid = true;
+  //           } else {
+  //               $('#description_error').addClass('d-none');
+  //               isValid = false;
+  //           }
+
+  //           if(isValid == true){
+  //             $('product_form').submit();
+  //           }
+
+  //       }
+  //       $('#name').on('input', check_empty);
+  //       $('#description').on('input', check_empty);
 </script>
 
 
