@@ -120,8 +120,8 @@
                                                 <div class="form-floating">
                                                     <select name="category_id" class="form-select"
                                                         aria-label="Default select example">
+                                                        <option disabled selected>Select Category</option>
                                                         @foreach ($category as $item)
-                                                            <option disabled selected>Select Category</option>
                                                             <option
                                                                 value="{{ isset($item->id) && !empty($item->id) ? $item->id : '' }}">
                                                                 {{ isset($item->cat_name) && !empty($item->cat_name) ? $item->cat_name : '' }}

@@ -1,4 +1,4 @@
-<form action="{{ route('admin.create_product') }}" id="product_form" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.update_product' , ['id' => $product_data->id]) }}" id="product_update" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-12 col-lg-12">
@@ -26,7 +26,6 @@
                             <span class="text-danger">{{$message}}</span>
                            @enderror
                         </div>
-
                         <div class="col-md-6 col-lg-6">
                             <div class="form-group">
                                 <label for="email"> Category </label>
@@ -34,9 +33,8 @@
                                     <select name="category_id" class="form-select"
                                         aria-label="Default select example">
                                         @foreach ($category as $item)
-                                            <option disabled selected>Select Category</option>
-                                            <option
-                                                value="{{ isset($item->id) && !empty($item->id) ? $item->id : '' }}" {{ isset($item->cat_name) && !empty($item->cat_name) && $product_data->category->cat_name == $item->cat_name ? 'selected' : '' }}>
+                                            <option selected
+                                                value="{{ isset($item->id) && !empty($item->id) ? $item->id : '' }}">
                                                 {{ isset($item->cat_name) && !empty($item->cat_name) ? $item->cat_name : '' }}
                                             </option>
                                         @endforeach
@@ -160,5 +158,5 @@
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="submit" class="btn btn-primary" >Create</button>
+<button type="submit" class="btn btn-primary" >Update</button>
 </form>

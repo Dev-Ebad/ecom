@@ -155,11 +155,30 @@ class AdminController extends Controller
     }
 
     public function edit_product(Request $request){
-        $product_data = Product::with('category')->where('id' , $request->product_id)->get();
+        // $product_data = Product::where('id' , $request->product_id)->get();
+        $product_data = Product::find($request->product_id);
         // $product_images = json_decode($product_data->images);
-        print_r($product_data); die;
+        // print_r($product_data); die;
         $view =  view('admin.includes.edit_product',compact('product_data'))->render();
         return $view;
+    }
+
+    public function update_product(Request $request, $id){
+        // dd($request->all());
+        $product_data = $request->except('images');
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $file) {
+                $imageName = $file->getClientOriginalName();
+                $file->storeAs('storage/app/uploads', $imageName);
+                $allFiles[] = $imageName;
+            }
+        }else{
+            $allFiles = [];
+        }
+        $product_data['images'] = json_encode($allFiles);
+        $product = Product::find($id);
+        $product->update($product_data);
+        return back()->with('success' , 'Data Successfully Updated');
     }
 
 

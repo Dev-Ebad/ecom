@@ -38,6 +38,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::post('/update' , [AdminController::class, 'update_user'])->name('admin.update_user');
     Route::post('/delete' , [AdminController::class, 'delete_user'])->name('admin.delete_user');
     Route::post('/edit/product' , [AdminController::class, 'edit_product'])->name('admin.edit_product');
+    Route::post('/update/product/{id}' , [AdminController::class, 'update_product'])->name('admin.update_product');
 });
 
  // --------
