@@ -64,6 +64,24 @@
     // })
     $('#deleteModal').modal('show');
   }
+  // Product delete
+
+  function Delete_product(id){
+    console.log(id);
+    $('#prod_id').val(id)
+    // $.ajax({
+    //   url : "{{route('admin.delete_user')}}",
+    //   type : "POST",
+    //   data : {
+    //     user_id: id,
+    //     _token : "{{csrf_token()}}"
+    //   },
+    //   success : function(res){
+    //     console.log(res);
+    //   }
+    // })
+    $('#deleteProductModal').modal('show');
+  }
 
   // function check_empty(){
 

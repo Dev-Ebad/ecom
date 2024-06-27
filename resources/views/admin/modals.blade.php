@@ -402,7 +402,6 @@
 
 {{-- User Delete Modal Start --}}
 
-<!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -426,3 +425,29 @@
 </div>
 
 {{-- User Delete Modal End --}}
+
+{{-- Delete Product Modal start --}}
+
+
+<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('admin.delete_product') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" id="prod_id" name="product_id">
+                    Are you sure you want to Delete?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{{-- Delete Product Modal end --}}

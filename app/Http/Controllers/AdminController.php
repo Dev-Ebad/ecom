@@ -181,6 +181,16 @@ class AdminController extends Controller
         return back()->with('success' , 'Data Successfully Updated');
     }
 
+    public function delete_product(Request $request){        
+        $product_data = Product::find($request->product_id);
+        if(!empty($product_data)){
+            $product_data->delete();
+            return back()->with('success' , 'User delete successfully');
+        }else{
+            return back()->with('error' , 'User not found');
+        }
+    }
+
 
 
 }
