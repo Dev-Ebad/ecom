@@ -35,6 +35,19 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{asset('public/asset/css/style.css')}}">
 
+	<style>
+		label {
+			display: block;
+			font:
+			1rem 'Fira Sans',
+			sans-serif;
+			}
+
+			input,
+			label {
+			margin: 0.4rem 0;
+		}
+	</style>
 	</head>
 	<body>
 		
@@ -81,7 +94,7 @@
 									<a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
 									href="javascript:void(0)">Logout</a>
 								</li>
-								<li class="cart"><a href="{{route('user.cart')}}"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li class="cart"><i class="icon-shopping-cart"></i><a href="{{route('user.cart')}}" id="count_cart"> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>
@@ -110,3 +123,4 @@
 				</div>
 			</div>
 		</nav>
+

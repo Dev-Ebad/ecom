@@ -54,6 +54,9 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/single_product/{id}' , [UserController::class, 'single_product'])->name('user.single_product');
     Route::get('/cart' , [UserController::class, 'cart'])->name('user.cart');
     Route::post('/addToCart' , [UserController::class, 'addToCart'])->name('user.addToCart');
+    Route::post('/change_quantity' , [UserController::class, 'change_quantity'])->name('user.change_quantity');
+    Route::post('/remove_cart' , [UserController::class, 'remove_cart'])->name('user.remove_cart');
+    Route::post('/count_cart' , [UserController::class, 'count_cart'])->name('user.count_cart');
 });
 
 

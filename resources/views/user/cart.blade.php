@@ -50,37 +50,48 @@
 								<span>Remove</span>
 							</div>
 						</div>
-						@foreach ($cart_data as $item)
-						<div class="product-cart d-flex">
-							<div class="one-forth">
-								<div class="product-img" style="background-image: url(images/item-6.jpg);">
+						@php
+							$subtotal = 0;
+						@endphp
+						@foreach ($cart_data as $k => $item)
+						<div class="product-cart d-flex" id="appndCart">
+								<div class="one-forth">
+									<div class="product-img" style="background-image: url(images/item-6.jpg);">
+									</div>
+									<div class="display-tc">
+										<h3> {{isset($item->product_name) && !empty($item->product_name) ? $item->product_name : ''}} </h3>
+									</div>
 								</div>
-								<div class="display-tc">
-									<h3> {{isset($item->product_name) && !empty($item->product_name) ? $item->product_name : ''}} </h3>
+								<div class="one-eight text-center">
+									<div class="display-tc">
+										<span class="price">${{isset($item->price) && !empty($item->price) ? $item->price : ''}}</span>
+									</div>
 								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">${{isset($item->price) && !empty($item->price) ? $item->price : ''}}</span>
+								<div class="one-eight text-center">
+										<div class="display-tc">
+											<input type="number" id="tentacles{{$item->product_id}}" value="{{isset($item->quantity) && $item->quantity ? $item->quantity : ''}}" class="change_quantity" onclick="change_quantity('{{$item->product_id}}')" name="tentacles" min="0" max="10" />
+										</div>
 								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="100">
+								<div class="one-eight text-center">
+									@php
+									$total = $item->price * $item->quantity;
+									$subtotal += $total;
+									@endphp
+									<div class="display-tc">
+										@if(!empty($total))
+										<span class="price" id="total_price{{$item->product_id}}">${{isset($total) && !empty($total) ? $total : ''}}</span>
+										@else
+										<span class="price" id="total_price{{$item->product_id}}">${{isset($item->price) && !empty($item->price) ? $item->price : ''}}</span>
+										@endif
+									</div>
 								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$120.00</span>
+								<div class="one-eight text-center">
+									<div class="display-tc">
+										<a href="javascript:void(0)" class="closed" id="remove_cart{{$item->product_id}}" onclick="Remove_cart('{{$item->product_id}}')"></a>
+									</div>
 								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<a href="#" class="closed"></a>
-								</div>
-							</div>
 						</div>
-						@endforeach
+							@endforeach
 					</div>
 				</div>
 				<div class="row row-pb-lg">
@@ -102,7 +113,7 @@
 								<div class="col-sm-4 text-center">
 									<div class="total">
 										<div class="sub">
-											<p><span>Subtotal:</span> <span>$200.00</span></p>
+											<p><span>Subtotal:</span> <span id="subtotal">${{$subtotal}}</span></p>
 											<p><span>Delivery:</span> <span>$0.00</span></p>
 											<p><span>Discount:</span> <span>$45.00</span></p>
 										</div>

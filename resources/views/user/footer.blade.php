@@ -125,23 +125,96 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
     }
 });
+function count_cart(){
+				let count_cart = $('#count_cart')
+                console.log(count_cart);
+				$.ajax({
+					url : "{{route('user.count_cart')}}",
+					method : "POST",
+					data : {
+						_token : "{{csrf_token()}}",
+					},
+					success : function(res){
+						console.log(res)
+						count_cart.text('Cart['+res.cart_count + ']');
+					}
+				})
+			}
+            count_cart()
 
 function addTocart(id){
-    console.log(id);
+    let quantity = $('.quantity').val()
+    let size = $("#size option").filter(":selected").text();
+
+    console.log(id, quantity, size);
     $.ajax({
         url : "{{route('user.addToCart')}}",
         method : "POST",
         data : {
             id : id,
+            quantity : quantity,
+            size : size,
             _token : "{{csrf_token()}}"
         },
         success : function(res){
+            setInterval(() => {
+                count_cart()
+            }, 1000);
             console.log(res);
             if(res.success){
                 alert(res.success)
             }else{
                 alert(res.error)
             }
+        }
+    })
+}
+
+// update quantity present in cart
+function change_quantity(id){
+    
+        let quantity = $('#tentacles'+id).val();
+        let total = $('#total_price'+id);
+        let subtotal = 0;
+        console.log(quantity, id);
+        $.ajax({
+            url : "{{route('user.change_quantity')}}",
+            method : "POST",
+            data : {
+                quantity : quantity,
+                product_id : id,
+                _token : "{{csrf_token()}}"
+            },
+            success : function(res){
+                console.log(res.cart)
+                res.cart.forEach(element => {
+                    subtotal += element.price * element.quantity;
+                });
+                console.log(subtotal)
+                $('#subtotal').text('$'+subtotal);
+                let total_price = res.cart_data[0].price * res.cart_data[0].quantity
+                total.text('$'+total_price);
+                console.log(total);
+            }
+        })
+}
+
+
+// Remove Cart function
+function Remove_cart(id){
+    let removebtn = $('remove_cart'+id);
+    let cart = $('#appndCart');
+    $.ajax({
+        url : "{{route('user.remove_cart')}}",
+        method : "POST",
+        data : {
+            product_id : id,
+            _token : "{{csrf_token()}}"
+        },
+        success : function(res){
+            console.log(res);
+            count_cart()
+            window.location.reload();
         }
     })
 }

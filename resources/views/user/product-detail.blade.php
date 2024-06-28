@@ -47,11 +47,11 @@
 							<div class="size-wrap">
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
-									@foreach ($sizes as $item)
-									<ul>
-									  <li><a href="#">{{isset($item) && !empty($item) ? $item : ''}}</a></li>
-								   </ul> 
-									@endforeach
+									<select name="size" id="size">
+										@foreach ($sizes as $item)
+										<option id="size">{{isset($item) && !empty($item) ? $item : ''}}</option>
+										@endforeach
+									</select>
 										
 				               {{-- <ul>
 				                  <li><a href="#">7</a></li>
@@ -91,9 +91,8 @@
                              <i class="icon-plus2"></i>
                          </button>
                      	</span> --}}
-						<input type="submit" value="+" id="add">
-						<input type="text" id="qty">
-						<input type="submit" value="-" id="minus">
+						<label for="tentacles" style="text-transform: uppercase;font-size: 20px;display: block;font-family: 'Rokkitt', Georgia, serif;padding:5px 5px">Quantity</label>
+						 <input type="number" id="tentacles" class="quantity" name="quantity" min="0" max="10" />
                   	</div>
                   	<div class="row">
 	                  	<div class="col-sm-12 text-center">

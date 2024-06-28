@@ -159,12 +159,16 @@
 							@if(!empty($products))
 							@foreach ($products as $item)
 							@php
-							$image = json_decode($item->images);
+							$image = isset($item->images) && !empty($item->images) ? json_decode($item->images) : '';
 							@endphp
 							<div class="col-md-3 col-lg-3 mb-4 text-center">
 								<div class="product-entry border">
 									<a href="{{route('user.single_product',['id' => $item->id])}}" class="prod-img">
-										<img src="{{url('storage/app/uploads/' . $image[0])}}" class="img-fluid" alt="{{$image[0]}}">
+										@if($image)
+											<img src="{{url('storage/app/uploads/' . $image[0])}}" class="img-fluid" alt="{{$image[0]}}">
+										@else
+											<img src="{{url('storage/app/uploads/no image icon.png')}}" class="img-fluid" alt="no Image">
+										@endif
 									</a>
 									<div class="desc">
 										<h2><a href="#">{{isset($item->description) && !empty($item->description) ? $item->description : ''}}</a></h2>
@@ -179,13 +183,7 @@
 							<div class="col-md-12 text-center">
 								<div class="block-27">
 				               <ul>
-					              <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-				                  <li class="active"><span>1</span></li>
-				                  <li><a href="#">2</a></li>
-				                  <li><a href="#">3</a></li>
-				                  <li><a href="#">4</a></li>
-				                  <li><a href="#">5</a></li>
-				                  <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
+					              <li>{!! $products->links() !!}</li>
 				               </ul>
 				            </div>
 							</div>

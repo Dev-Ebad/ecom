@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -83,7 +84,7 @@ class AdminController extends Controller
         if($request->hasFile('profile')){
             $image = $request->file('profile');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('storage/app/uploads', $imageName);
+            $image->storeAs('uploads', $imageName);
         }
 
         $user_data['profile'] = $imageName;
@@ -130,7 +131,7 @@ class AdminController extends Controller
         if($request->hasFile('images')){
             foreach ($request->file('images') as $file) {
                 $imageName = $file->getClientOriginalName();
-                $file->storeAs('storage/app/uploads', $imageName);
+                $file->storeAs('uploads/', $imageName);
                 $allFiles[] = $imageName;
             }
         }else{
@@ -155,10 +156,7 @@ class AdminController extends Controller
     }
 
     public function edit_product(Request $request){
-        // $product_data = Product::where('id' , $request->product_id)->get();
         $product_data = Product::find($request->product_id);
-        // $product_images = json_decode($product_data->images);
-        // print_r($product_data); die;
         $view =  view('admin.includes.edit_product',compact('product_data'))->render();
         return $view;
     }
@@ -169,7 +167,7 @@ class AdminController extends Controller
         if($request->hasFile('images')){
             foreach ($request->file('images') as $file) {
                 $imageName = $file->getClientOriginalName();
-                $file->storeAs('storage/app/uploads', $imageName);
+                $file->storeAs('uploads/', $imageName);
                 $allFiles[] = $imageName;
             }
         }else{
@@ -190,6 +188,7 @@ class AdminController extends Controller
             return back()->with('error' , 'User not found');
         }
     }
+
 
 
 
