@@ -105,7 +105,7 @@ class AdminController extends Controller
 
     // fetch product
     public function products(){
-        $products = Product::all();
+        $products = Product::paginate(15);
         return view('admin.products')->with(compact('products'));
     }
 
@@ -188,6 +188,9 @@ class AdminController extends Controller
             return back()->with('error' , 'User not found');
         }
     }
+
+
+
 
 
 

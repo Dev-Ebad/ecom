@@ -9,188 +9,158 @@
 			</div>
 		</div>
 
-
 		<div class="colorlib-product">
 			<div class="container">
-				<div class="row row-pb-lg">
-					<div class="col-sm-10 offset-md-1">
-						<div class="process-wrap">
-							<div class="process text-center active">
-								<p><span>01</span></p>
-								<h3>Shopping Cart</h3>
-							</div>
-							<div class="process text-center active">
-								<p><span>02</span></p>
-								<h3>Checkout</h3>
-							</div>
-							<div class="process text-center">
-								<p><span>03</span></p>
-								<h3>Order Complete</h3>
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="row">
-					<div class="col-lg-8">
-						<form method="post" class="colorlib-form">
-							<h2>Billing Details</h2>
-		              	<div class="row">
-			               <div class="col-md-12">
-			                  <div class="form-group">
-			                  	<label for="country">Select Country</label>
-			                     <div class="form-field">
-			                     	<i class="icon icon-arrow-down3"></i>
-			                        <select name="people" id="people" class="form-control">
-				                      	<option value="#">Select country</option>
-				                        <option value="#">Alaska</option>
-				                        <option value="#">China</option>
-				                        <option value="#">Japan</option>
-				                        <option value="#">Korea</option>
-				                        <option value="#">Philippines</option>
-			                        </select>
-			                     </div>
-			                  </div>
-			               </div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="fname">First Name</label>
-										<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="lname">Last Name</label>
-										<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Company Name</label>
-			                    	<input type="text" id="companyname" class="form-control" placeholder="Company Name">
-			                  </div>
-			               </div>
-
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="fname">Address</label>
-			                    	<input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-			                  </div>
-			                  <div class="form-group">
-			                    	<input type="text" id="address2" class="form-control" placeholder="Second Address">
-			                  </div>
-			               </div>
-			            
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Town/City</label>
-			                    	<input type="text" id="towncity" class="form-control" placeholder="Town or City">
-			                  </div>
-			               </div>
-			            
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="stateprovince">State/Province</label>
-										<input type="text" id="fname" class="form-control" placeholder="State Province">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="lname">Zip/Postal Code</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
-									</div>
-								</div>
-							
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="email">E-mail Address</label>
-										<input type="text" id="email" class="form-control" placeholder="State Province">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="Phone">Phone Number</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="">
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<div class="radio">
-										  <label><input type="radio" name="optradio"> Create an Account? </label>
-										  <label><input type="radio" name="optradio"> Ship to different address</label>
-										</div>
-									</div>
-								</div>
-		               </div>
-		            </form>
-					</div>
-
-					<div class="col-lg-4">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="cart-detail">
-									<h2>Cart Total</h2>
-									<ul>
-										<li>
-											<span>Subtotal</span> <span>$100.00</span>
-											<ul>
-												<li><span>1 x Product Name</span> <span>$99.00</span></li>
-												<li><span>1 x Product Name</span> <span>$78.00</span></li>
-											</ul>
-										</li>
-										<li><span>Shipping</span> <span>$0.00</span></li>
-										<li><span>Order Total</span> <span>$180.00</span></li>
-									</ul>
-								</div>
-						   </div>
-
-						   <div class="w-100"></div>
-
-						   <div class="col-md-12">
-								<div class="cart-detail">
-									<h2>Payment Method</h2>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio"> Direct Bank Tranfer</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio"> Check Payment</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio"> Paypal</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="checkbox">
-											   <label><input type="checkbox" value=""> I have read and accept the terms and conditions</label>
-											</div>
-										</div>
-									</div>
-								</div>
+					<div class="col-md-6 col-md-offset-3">
+						<div class="panel panel-default credit-card-box">
+							<div class="panel-heading display-table" >
+									<h3 class="panel-title" >Payment Details</h3>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<p><a href="#" class="btn btn-primary">Place an order</a></p>
+							<div class="panel-body">
+				
+								@if (Session::has('success'))
+									<div class="alert alert-success text-center">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+										<p>{{ Session::get('success') }}</p>
+									</div>
+								@endif
+				
+								<form 
+										role="form" 
+										action="{{ route('user.checkout') }}" 
+										method="post" 
+										class="require-validation"
+										data-cc-on-file="false"
+										data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+										id="payment-form">
+									@csrf
+				
+									<div class='form-row row'>
+										<div class='col-xs-12 form-group required'>
+											<label class='control-label'>Name on Card</label> <input
+												class='form-control' size='4' type='text'>
+										</div>
+									</div>
+				
+									<div class='form-row row'>
+										<div class='col-xs-12 form-group card required'>
+											<label class='control-label'>Card Number</label> <input
+												autocomplete='off' class='form-control card-number' size='20'
+												type='text'>
+										</div>
+									</div>
+				
+									<div class='form-row row'>
+										<div class='col-xs-12 col-md-4 form-group cvc required'>
+											<label class='control-label'>CVC</label> <input autocomplete='off'
+												class='form-control card-cvc' placeholder='ex. 311' size='4'
+												type='text'>
+										</div>
+										<div class='col-xs-12 col-md-4 form-group expiration required'>
+											<label class='control-label'>Expiration Month</label> <input
+												class='form-control card-expiry-month' placeholder='MM' size='2'
+												type='text'>
+										</div>
+										<div class='col-xs-12 col-md-4 form-group expiration required'>
+											<label class='control-label'>Expiration Year</label> <input
+												class='form-control card-expiry-year' placeholder='YYYY' size='4'
+												type='text'>
+										</div>
+									</div>
+				
+									<div class='form-row row'>
+										<div class='col-md-12 error form-group hide'>
+											<div class='alert-danger alert'>Please correct the errors and try
+												again.</div>
+										</div>
+									</div>
+				
+									<div class="row">
+										<div class="col-xs-12">
+											<button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+										</div>
+									</div>
+										
+								</form>
 							</div>
-						</div>
+						</div>        
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+		
+	<script type="text/javascript">
+	  
+	$(function() {
+	  
+		/*------------------------------------------
+		--------------------------------------------
+		Stripe Payment Code
+		--------------------------------------------
+		--------------------------------------------*/
+		
+		var $form = $(".require-validation");
+		 
+		$('form.require-validation').bind('submit', function(e) {
+			var $form = $(".require-validation"),
+			inputSelector = ['input[type=email]', 'input[type=password]',
+							 'input[type=text]', 'input[type=file]',
+							 'textarea'].join(', '),
+			$inputs = $form.find('.required').find(inputSelector),
+			$errorMessage = $form.find('div.error'),
+			valid = true;
+			$errorMessage.addClass('hide');
+		
+			$('.has-error').removeClass('has-error');
+			$inputs.each(function(i, el) {
+			  var $input = $(el);
+			  if ($input.val() === '') {
+				$input.parent().addClass('has-error');
+				$errorMessage.removeClass('hide');
+				e.preventDefault();
+			  }
+			});
+		 
+			if (!$form.data('cc-on-file')) {
+			  e.preventDefault();
+			  Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+			  Stripe.createToken({
+				number: $('.card-number').val(),
+				cvc: $('.card-cvc').val(),
+				exp_month: $('.card-expiry-month').val(),
+				exp_year: $('.card-expiry-year').val()
+			  }, stripeResponseHandler);
+			}
+		
+		});
+		  
+		/*------------------------------------------
+		--------------------------------------------
+		Stripe Response Handler
+		--------------------------------------------
+		--------------------------------------------*/
+		function stripeResponseHandler(status, response) {
+			if (response.error) {
+				$('.error')
+					.removeClass('hide')
+					.find('.alert')
+					.text(response.error.message);
+			} else {
+				/* token contains id, last4, and card type */
+				var token = response['id'];
+					 
+				$form.find('input[type=text]').empty();
+				$form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+				$form.get(0).submit();
+			}
+		}
+		 
+	});
+	</script>
 
 
 @include('user.footer')

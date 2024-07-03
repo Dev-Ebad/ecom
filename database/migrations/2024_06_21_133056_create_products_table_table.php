@@ -24,6 +24,7 @@ class CreateProductsTableTable extends Migration
             $table->integer('stock_quantity')->nullable();
             $table->string('weight')->nullable();
             $table->string('dimensions')->nullable();
+            $table->string('brand')->nullable();
             $table->string('images')->nullable();
             $table->string('attributes')->nullable();
             $table->string('status')->nullable();

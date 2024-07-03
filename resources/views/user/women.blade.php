@@ -65,47 +65,27 @@
 								<div class="side border mb-1">
 									<h3>Brand</h3>
 									<ul>
-										<li><a href="#">Nike</a></li>
-										<li><a href="#">Adidas</a></li>
-										<li><a href="#">Merrel</a></li>
-										<li><a href="#">Gucci</a></li>
-										<li><a href="#">Skechers</a></li>
+										<li><a href="javascript:void(0)" class="brand">Nike</a></li>
+										<li><a href="javascript:void(0)" class="brand">Adidas</a></li>
+										<li><a href="javascript:void(0)" class="brand">Puma</a></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-sm-12">
 								<div class="side border mb-1">
-									<h3>Size/Width</h3>
+									<h3>Size</h3>
 									<div class="block-26 mb-2">
 										<h4>Size</h4>
 					               <ul>
-					                  <li><a href="#">7</a></li>
-					                  <li><a href="#">7.5</a></li>
-					                  <li><a href="#">8</a></li>
-					                  <li><a href="#">8.5</a></li>
-					                  <li><a href="#">9</a></li>
-					                  <li><a href="#">9.5</a></li>
-					                  <li><a href="#">10</a></li>
-					                  <li><a href="#">10.5</a></li>
-					                  <li><a href="#">11</a></li>
-					                  <li><a href="#">11.5</a></li>
-					                  <li><a href="#">12</a></li>
-					                  <li><a href="#">12.5</a></li>
-					                  <li><a href="#">13</a></li>
-					                  <li><a href="#">13.5</a></li>
-					                  <li><a href="#">14</a></li>
+					                  <li><a href="javascript:void(0)" class="size">small</a></li>
+					                  <li><a href="javascript:void(0)" class="size">medium</a></li>
+					                  <li><a href="javascript:void(0)" class="size">large</a></li>
 					               </ul>
-					            </div>
-					            <div class="block-26">
-										<h4>Width</h4>
-					               <ul>
-					                  <li><a href="#">M</a></li>
-					                  <li><a href="#">W</a></li>
-					               </ul>
+
 					            </div>
 								</div>
 							</div>
-							<div class="col-sm-12">
+							{{-- <div class="col-sm-12">
 								<div class="side border mb-1">
 									<h3>Style</h3>
 									<ul>
@@ -116,8 +96,8 @@
 										<li><a href="#">Oxfords</a></li>
 									</ul>
 								</div>
-							</div>
-							<div class="col-sm-12">
+							</div> --}}
+							{{-- <div class="col-sm-12">
 								<div class="side border mb-1">
 									<h3>Colors</h3>
 									<ul>
@@ -132,8 +112,8 @@
 										<li><a href="#">Brown</a></li>
 									</ul>
 								</div>
-							</div>
-							<div class="col-sm-12">
+							</div> --}}
+							{{-- <div class="col-sm-12">
 								<div class="side border mb-1">
 									<h3>Material</h3>
 									<ul>
@@ -141,8 +121,8 @@
 										<li><a href="#">Suede</a></li>
 									</ul>
 								</div>
-							</div>
-							<div class="col-sm-12">
+							</div> --}}
+							{{-- <div class="col-sm-12">
 								<div class="side border mb-1">
 									<h3>Technologies</h3>
 									<ul>
@@ -151,10 +131,10 @@
 										<li><a href="#">FlexBevel</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
-					<div class="col-lg-9 col-xl-9">
+					<div class="col-lg-9 col-xl-9" id="appndProd">
 						<div class="row row-pb-md">
 							@if(!empty($products))
 							@foreach ($products as $item)

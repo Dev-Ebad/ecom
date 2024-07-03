@@ -15,7 +15,7 @@ class UserController extends Controller
         return view('user.index');
     }
     public function mens(){
-        $products = Product::all();
+        $products = Product::orderBy('created_at' , 'desc')->where('attributes' , 'women')->paginate(5);
         return view('user.men')->with(compact('products'));
     }
 
@@ -27,6 +27,15 @@ class UserController extends Controller
 
     public function product_detail(){
         return view('user.product-detail');
+    }
+
+    public function checkout_page(){
+        // dd($total);
+        return view('user.checkout');
+    }
+
+    public function about(){
+        return view('user.about');
     }
 
     public function single_product($id){
@@ -88,6 +97,17 @@ class UserController extends Controller
     public function count_cart(){
         $cart_count = Cart::where('user_id' , Auth::id())->count();
         return response()->json(['cart_count' => $cart_count]);
+    }
+
+    public function filter_brand(Request $request){
+
+        if($request->brand){
+            $products = Product::where('brand' , $request->brand)->where('attributes', 'women')->where('status' , 'active')->get();
+        }else if($request->size){
+            $products = Product::whereJsonContains('size' , (string)$request->size)->where('attributes', 'women')->where('status' , 'active')->get();
+        }
+        $view = view('includes.filter_products', compact('products'))->render();
+        return ['view' => $view];
     }
 
 

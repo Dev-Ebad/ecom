@@ -99,26 +99,29 @@
 						<div class="total-wrap">
 							<div class="row">
 								<div class="col-sm-8">
-									<form action="#">
+									{{-- <form action="{{route('user.checkout')}}" method="POST"> --}}
+										{{-- @csrf --}}
 										<div class="row form-group">
-											<div class="col-sm-9">
-												<input type="text" name="quantity" class="form-control input-number" placeholder="Your Coupon Number...">
-											</div>
 											<div class="col-sm-3">
-												<input type="submit" value="Apply Coupon" class="btn btn-primary">
+												{{-- <input class="subtotal" type="text" value="{{$subtotal}}" name="total"> --}}
 											</div>
 										</div>
-									</form>
+									{{-- </form> --}}
 								</div>
 								<div class="col-sm-4 text-center">
 									<div class="total">
 										<div class="sub">
-											<p><span>Subtotal:</span> <span id="subtotal">${{$subtotal}}</span></p>
-											<p><span>Delivery:</span> <span>$0.00</span></p>
-											<p><span>Discount:</span> <span>$45.00</span></p>
+											<p><span>Subtotal:</span> <span class="subtotal">${{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}</span></p>
+											
+											{{-- <p><span>Delivery:</span> <span>$0.00</span></p>
+											<p><span>Discount:</span> <span>$45.00</span></p> --}}
 										</div>
 										<div class="grand-total">
-											<p><span><strong>Total:</strong></span> <span>$450.00</span></p>
+											<p><span><strong>Total:</strong></span> <span class="subtotal">${{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}</span></p>
+										</div>
+										<div class="grand-total">
+											<p><span><strong></strong></span> <span><a href="{{route('user.checkout-page' , ['total' => $subtotal])}}" class="btn btn-primary">Checkout</a>
+											</span></p>
 										</div>
 									</div>
 								</div>
@@ -127,7 +130,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				{{-- <div class="row">
 					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
 						<h2>Related Products</h2>
 					</div>
@@ -177,7 +180,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 

@@ -191,7 +191,8 @@ function change_quantity(id){
                     subtotal += element.price * element.quantity;
                 });
                 console.log(subtotal)
-                $('#subtotal').text('$'+subtotal);
+                $('.subtotal').text('$'+subtotal);
+                $('.subtotal').val('$'+subtotal);
                 let total_price = res.cart_data[0].price * res.cart_data[0].quantity
                 total.text('$'+total_price);
                 console.log(total);
@@ -218,6 +219,48 @@ function Remove_cart(id){
         }
     })
 }
+
+
+// filter brand
+
+let brand = $('.brand');
+let size = $('.size');
+
+    brand.on('click', function(){
+        let brand_val = $(this).text()
+        console.log(brand_val);
+        $.ajax({
+            url : "{{route('user.filter_brand')}}",
+            method : "POST",
+            data : {
+                brand : brand_val,
+                _token : "{{csrf_token()}}"
+            },
+            success : function(res){
+                console.log(res.view);
+                $('#appndProd').html(res.view);
+            }
+        })
+    })
+
+    size.on('click', function(){
+        let size_val = $(this).text()
+        console.log(size_val);
+        $.ajax({
+            url : "{{route('user.filter_brand')}}",
+            method : "POST",
+            data : {
+                size : size_val,
+                _token : "{{csrf_token()}}"
+            },
+            success : function(res){
+                console.log(res.view);
+                $('#appndProd').html(res.view);
+            }
+        })
+    })
+
+
 </script>
 
 

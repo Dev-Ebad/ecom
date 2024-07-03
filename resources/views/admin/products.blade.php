@@ -77,6 +77,8 @@
               </div>
             </div>
             
+            {!! $products->links() !!}
+            
            @include('admin.modals')
           </div>
         </div>

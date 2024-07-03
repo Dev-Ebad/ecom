@@ -58,9 +58,79 @@
 
 		<div class="colorlib-product">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-						<h2>View All Products</h2>
+				<div class="col-lg-3 col-xl-3">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="side border mb-1">
+								<h3>Brand</h3>
+								<ul>
+									<li><a href="javascript:void(0)" class="brand">Nike</a></li>
+									<li><a href="javascript:void(0)" class="brand">Adidas</a></li>
+									<li><a href="javascript:void(0)" class="brand">Puma</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="side border mb-1">
+								<h3>Size</h3>
+								<div class="block-26 mb-2">
+									<h4>Size</h4>
+							   <ul>
+								  <li><a href="javascript:void(0)" class="size">small</a></li>
+								  <li><a href="javascript:void(0)" class="size">medium</a></li>
+								  <li><a href="javascript:void(0)" class="size">large</a></li>
+							   </ul>
+
+							</div>
+							</div>
+						</div>
+						{{-- <div class="col-sm-12">
+							<div class="side border mb-1">
+								<h3>Style</h3>
+								<ul>
+									<li><a href="#">Slip Ons</a></li>
+									<li><a href="#">Boots</a></li>
+									<li><a href="#">Sandals</a></li>
+									<li><a href="#">Lace Ups</a></li>
+									<li><a href="#">Oxfords</a></li>
+								</ul>
+							</div>
+						</div> --}}
+						{{-- <div class="col-sm-12">
+							<div class="side border mb-1">
+								<h3>Colors</h3>
+								<ul>
+									<li><a href="#">Black</a></li>
+									<li><a href="#">White</a></li>
+									<li><a href="#">Blue</a></li>
+									<li><a href="#">Red</a></li>
+									<li><a href="#">Green</a></li>
+									<li><a href="#">Grey</a></li>
+									<li><a href="#">Orange</a></li>
+									<li><a href="#">Cream</a></li>
+									<li><a href="#">Brown</a></li>
+								</ul>
+							</div>
+						</div> --}}
+						{{-- <div class="col-sm-12">
+							<div class="side border mb-1">
+								<h3>Material</h3>
+								<ul>
+									<li><a href="#">Leather</a></li>
+									<li><a href="#">Suede</a></li>
+								</ul>
+							</div>
+						</div> --}}
+						{{-- <div class="col-sm-12">
+							<div class="side border mb-1">
+								<h3>Technologies</h3>
+								<ul>
+									<li><a href="#">BioBevel</a></li>
+									<li><a href="#">Groove</a></li>
+									<li><a href="#">FlexBevel</a></li>
+								</ul>
+							</div>
+						</div> --}}
 					</div>
 				</div>
 				<div class="row row-pb-md">
@@ -86,16 +156,10 @@
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<div class="block-27">
-		               <ul>
-			               <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-		                  <li class="active"><span>1</span></li>
-		                  <li><a href="#">2</a></li>
-		                  <li><a href="#">3</a></li>
-		                  <li><a href="#">4</a></li>
-		                  <li><a href="#">5</a></li>
-		                  <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
-		               </ul>
-		            </div>
+					   <ul>
+						  <li>{!! $products->links() !!}</li>
+					   </ul>
+					</div>
 					</div>
 				</div>
 			</div>

@@ -50,6 +50,7 @@
             </div>
           </li>
           <ul>
+
             <li class="nav-item">
               <a data-bs-toggle="collapse" href="#base">
                 <i class="fas fa-layer-group"></i>
@@ -57,16 +58,19 @@
                 <span class="caret"></span>
               </a>
             </li>
+            
             <li class="nav-item">
               <a href="{{route('admin.users')}}">
-                <span class="sub-item">users</span>
+                <span class="sub-item">Users</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="{{route('admin.products')}}">
                 <span class="sub-item">Products</span>
               </a>
             </li>
+
           </ul>
           <li class="nav-section">
             <span class="sidebar-mini-icon">

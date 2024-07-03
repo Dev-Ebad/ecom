@@ -35,6 +35,10 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{asset('public/asset/css/style.css')}}">
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
 	<style>
 		label {
 			display: block;
@@ -85,7 +89,7 @@
 									</ul>
 								</li>
 								<li><a href="{{route('user.womens')}}">Women</a></li>
-								<li><a href="">About</a></li>
+								<li><a href="{{route('user.about')}}">About</a></li>
 								<li><a href="contact.html">Contact</a></li>
 								<li class="cart">
 									<form action="{{ route('logout') }}" method="POST" id="logout-form">
