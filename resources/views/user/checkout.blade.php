@@ -12,7 +12,7 @@
 		<div class="colorlib-product">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
+					<div class="col-md-12">
 						<div class="panel panel-default credit-card-box">
 							<div class="panel-heading display-table" >
 									<h3 class="panel-title" >Payment Details</h3>
@@ -35,8 +35,31 @@
 										data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
 										id="payment-form">
 									@csrf
+									<div class='form-row row'>
+										<div class='col-xs-6 form-group required'>
+											<label class='control-label'>Name </label> 
+											<input class='form-control' type='text' name="name">
+										</div>
+										<div class='col-xs-6 form-group required'>
+											<label class='control-label'>Email</label> 
+											<input autocomplete='off' name="email" class='form-control'  type='text'>
+										</div>
+									</div>
 				
 									<div class='form-row row'>
+										<div class='col-xs-6 form-group required'>
+											<label class='control-label'>Address</label> 
+											<input class='form-control'  type='text' name="address">
+										</div>
+										<div class='col-xs-6 form-group required'>
+											<label class='control-label'>Phone</label> 
+											<input autocomplete='off' name="phone" class='form-control' size='11' type='text'>
+											<input autocomplete='off' name="price" class='form-control' value="{{isset($total) && !empty($total) ? $total : ''}}" type='hidden'>
+										</div>
+									</div>
+
+									<div class='form-row row'>
+										<h3 class="mx-auto my-5">Card Information</h3>
 										<div class='col-xs-12 form-group required'>
 											<label class='control-label'>Name on Card</label> <input
 												class='form-control' size='4' type='text'>
@@ -78,7 +101,7 @@
 				
 									<div class="row">
 										<div class="col-xs-12">
-											<button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+											<button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (${{isset($total) && !empty($total) ? $total : ''}})</button>
 										</div>
 									</div>
 										

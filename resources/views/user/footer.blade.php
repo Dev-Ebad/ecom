@@ -125,28 +125,26 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
     }
 });
+
 function count_cart(){
-				let count_cart = $('#count_cart')
-                console.log(count_cart);
-				$.ajax({
-					url : "{{route('user.count_cart')}}",
-					method : "POST",
-					data : {
-						_token : "{{csrf_token()}}",
-					},
-					success : function(res){
-						console.log(res)
-						count_cart.text('Cart['+res.cart_count + ']');
-					}
-				})
-			}
-            count_cart()
+    let count_cart = $('#count_cart')
+    $.ajax({
+        url : "{{route('user.count_cart')}}",
+        method : "POST",
+        data : {
+            _token : "{{csrf_token()}}",
+        },
+        success : function(res){
+            count_cart.text('Cart['+res.cart_count + ']');
+        }
+    })
+}
+count_cart()
 
 function addTocart(id){
     let quantity = $('.quantity').val()
     let size = $("#size option").filter(":selected").text();
 
-    console.log(id, quantity, size);
     $.ajax({
         url : "{{route('user.addToCart')}}",
         method : "POST",
@@ -160,7 +158,6 @@ function addTocart(id){
             setInterval(() => {
                 count_cart()
             }, 1000);
-            console.log(res);
             if(res.success){
                 alert(res.success)
             }else{
@@ -173,31 +170,28 @@ function addTocart(id){
 // update quantity present in cart
 function change_quantity(id){
     
-        let quantity = $('#tentacles'+id).val();
-        let total = $('#total_price'+id);
-        let subtotal = 0;
-        console.log(quantity, id);
-        $.ajax({
-            url : "{{route('user.change_quantity')}}",
-            method : "POST",
-            data : {
-                quantity : quantity,
-                product_id : id,
-                _token : "{{csrf_token()}}"
-            },
-            success : function(res){
-                console.log(res.cart)
-                res.cart.forEach(element => {
-                    subtotal += element.price * element.quantity;
-                });
-                console.log(subtotal)
-                $('.subtotal').text('$'+subtotal);
-                $('.subtotal').val('$'+subtotal);
-                let total_price = res.cart_data[0].price * res.cart_data[0].quantity
-                total.text('$'+total_price);
-                console.log(total);
-            }
-        })
+    let quantity = $('#tentacles'+id).val();
+    let total = $('#total_price'+id);
+    let subtotal = 0;
+    $.ajax({
+        url : "{{route('user.change_quantity')}}",
+        method : "POST",
+        data : {
+            quantity : quantity,
+            product_id : id,
+            _token : "{{csrf_token()}}"
+        },
+        success : function(res){
+            res.cart.forEach(element => {
+                subtotal += element.price * element.quantity;
+            });
+            console.log(subtotal)
+            $('.subtotal').text('$'+subtotal);
+            $('.subtotal').val('$'+subtotal);
+            let total_price = res.cart_data[0].price * res.cart_data[0].quantity
+            total.text('$'+total_price);
+        }
+    })
 }
 
 
@@ -213,7 +207,6 @@ function Remove_cart(id){
             _token : "{{csrf_token()}}"
         },
         success : function(res){
-            console.log(res);
             count_cart()
             window.location.reload();
         }
@@ -226,18 +219,20 @@ function Remove_cart(id){
 let brand = $('.brand');
 let size = $('.size');
 
+let brand_man = $('.brand_man');
+let size_man = $('.size_man');
+
     brand.on('click', function(){
         let brand_val = $(this).text()
-        console.log(brand_val);
         $.ajax({
             url : "{{route('user.filter_brand')}}",
             method : "POST",
             data : {
                 brand : brand_val,
+                category : 'women',
                 _token : "{{csrf_token()}}"
             },
             success : function(res){
-                console.log(res.view);
                 $('#appndProd').html(res.view);
             }
         })
@@ -245,20 +240,74 @@ let size = $('.size');
 
     size.on('click', function(){
         let size_val = $(this).text()
-        console.log(size_val);
         $.ajax({
             url : "{{route('user.filter_brand')}}",
             method : "POST",
             data : {
                 size : size_val,
+                category : 'women',
                 _token : "{{csrf_token()}}"
             },
             success : function(res){
-                console.log(res.view);
                 $('#appndProd').html(res.view);
             }
         })
     })
+
+    brand_man.on('click', function(){
+        let brand_val = $(this).text()
+        $.ajax({
+            url : "{{route('user.filter_brand')}}",
+            method : "POST",
+            data : {
+                brand : brand_val,
+                category : 'man',
+                _token : "{{csrf_token()}}"
+            },
+            success : function(res){
+                $('#appndProd').html(res.view);
+            }
+        })
+    })
+
+    size_man.on('click', function(){
+        let size_val = $(this).text()
+        $.ajax({
+            url : "{{route('user.filter_brand')}}",
+            method : "POST",
+            data : {
+                size : size_val,
+                category : 'man',
+                _token : "{{csrf_token()}}"
+            },
+            success : function(res){
+                $('#appndProd').html(res.view);
+            }
+        })
+    })
+
+
+
+    
+    let search_bar = $('#search_bar_btn');
+
+    function search(event){
+        if(search_bar && event.keyCode == 13){
+
+            let search_input = $('#search_bar').val();
+            $.ajax({
+                url : "{{route('user.search_filter')}}",
+                method : "POST",
+                data : {
+                    inputs : search_input,
+                    _token : "{{csrf_token()}}"
+                },
+                success : function(res){
+                    $('#appndProd').html(res.view);
+                }
+            })
+        }
+    }
 
 
 </script>

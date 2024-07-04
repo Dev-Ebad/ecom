@@ -55,17 +55,21 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/product_detail' , [UserController::class, 'product_detail'])->name('user.product_detail');
     Route::get('/single_product/{id}' , [UserController::class, 'single_product'])->name('user.single_product');
     Route::get('/cart' , [UserController::class, 'cart'])->name('user.cart');
-    Route::get('/checkout-page' , [UserController::class, 'checkout_page'])->name('user.checkout-page');
+    Route::get('/checkout-page/{total}' , [UserController::class, 'checkout_page'])->name('user.checkout-page');
     Route::get('/about' , [UserController::class, 'about'])->name('user.about');
+    Route::get('/user_profile' , [UserController::class, 'user_profile'])->name('user.user_profile');
 
     Route::post('/addToCart' , [UserController::class, 'addToCart'])->name('user.addToCart');
     Route::post('/change_quantity' , [UserController::class, 'change_quantity'])->name('user.change_quantity');
     Route::post('/remove_cart' , [UserController::class, 'remove_cart'])->name('user.remove_cart');
     Route::post('/count_cart' , [UserController::class, 'count_cart'])->name('user.count_cart');
     Route::post('/filter_brand' , [UserController::class, 'filter_brand'])->name('user.filter_brand');
+    Route::post('/search_filter' , [UserController::class, 'search_filter'])->name('user.search_filter');
 
     Route::controller(PaymentController::class)->group(function(){
+
         Route::post('checkout', 'checkout')->name('user.checkout');
+    
     });
 
 });

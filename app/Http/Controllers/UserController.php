@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -12,8 +14,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        return view('user.index');
+        $products = Product::orderBy('created_at' , 'desc')->paginate(8);
+        return view('user.index')->with(compact('products'));
     }
+
     public function mens(){
         $products = Product::orderBy('created_at' , 'desc')->where('attributes' , 'women')->paginate(5);
         return view('user.men')->with(compact('products'));
@@ -29,9 +33,8 @@ class UserController extends Controller
         return view('user.product-detail');
     }
 
-    public function checkout_page(){
-        // dd($total);
-        return view('user.checkout');
+    public function checkout_page($total){
+        return view('user.checkout')->with(compact('total'));
     }
 
     public function about(){
@@ -61,14 +64,15 @@ class UserController extends Controller
                 'product_id' => $product_cart->id,
                 'user_id' => Auth::id(),
                 'price' => $product_cart->price,
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
+                'status' => 'pending'
             ]);
             return response()->json(['success' => 'Product is added to the cart']);
         }
     }
 
     public function cart(){
-        $cart_data = Cart::where('user_id' , Auth::id())->get();
+        $cart_data = Cart::where('user_id' , Auth::id())->where('status' , 'pending')->get();
         // dd($cart_data);
         return view('user.cart')->with(compact('cart_data'));
     }
@@ -102,7 +106,7 @@ class UserController extends Controller
     public function filter_brand(Request $request){
 
         if($request->brand){
-            $products = Product::where('brand' , $request->brand)->where('attributes', 'women')->where('status' , 'active')->get();
+            $products = Product::where('brand' , $request->brand)->where('attributes', $request->category)->where('status' , 'active')->get();
         }else if($request->size){
             $products = Product::whereJsonContains('size' , (string)$request->size)->where('attributes', 'women')->where('status' , 'active')->get();
         }
@@ -111,6 +115,19 @@ class UserController extends Controller
     }
 
 
+    public function search_filter(Request $request){
 
+        $products = Product::orderBy('name' , 'asc')->where('attributes' , $request->inputs)->get();
+        $view = view('includes.filter_products',compact('products'))->render();
+        return ['view' => $view];
+    }
+
+
+    public function user_profile(){
+        $user_data = User::where('id', Auth::id())->first();
+        $orders = Order::with('user')->where('user_id', Auth::id())->get();
+        
+        return view('user.user_profile')->with(compact('user_data', 'orders'));
+    }
 
 }

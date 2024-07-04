@@ -17,7 +17,7 @@
                 @endif
             </a>
             <div class="desc">
-                <h2><a href="#">{{isset($item->description) && !empty($item->description) ? $item->description : ''}}</a></h2>
+                <h2><a href="{{route('user.single_product',['id' => $item->id])}}">{{isset($item->description) && !empty($item->description) ? $item->description : ''}}</a></h2>
                 <span class="price">${{isset($item->price) && !empty($item->price) ? $item->price : ''}}</span>
             </div>
         </div>

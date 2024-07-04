@@ -14,7 +14,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="breadcrumbs-img" style="background-image: url(images/cover-img-1.jpg);">
+						<div class="breadcrumbs-img" style="background-image: url('{{url('storage/app/uploads/mens image.jpg')}}');">
 							<h2>Men's</h2>
 						</div>
 						<div class="menu text-center">
@@ -64,21 +64,20 @@
 							<div class="side border mb-1">
 								<h3>Brand</h3>
 								<ul>
-									<li><a href="javascript:void(0)" class="brand">Nike</a></li>
-									<li><a href="javascript:void(0)" class="brand">Adidas</a></li>
-									<li><a href="javascript:void(0)" class="brand">Puma</a></li>
+									<li><a href="javascript:void(0)" class="brand_man">Nike</a></li>
+									<li><a href="javascript:void(0)" class="brand_man">Adidas</a></li>
+									<li><a href="javascript:void(0)" class="brand_man">Puma</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="side border mb-1">
-								<h3>Size</h3>
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
 							   <ul>
-								  <li><a href="javascript:void(0)" class="size">small</a></li>
-								  <li><a href="javascript:void(0)" class="size">medium</a></li>
-								  <li><a href="javascript:void(0)" class="size">large</a></li>
+								  <li><a href="javascript:void(0)" class="size_man">small</a></li>
+								  <li><a href="javascript:void(0)" class="size_man">medium</a></li>
+								  <li><a href="javascript:void(0)" class="size_man">large</a></li>
 							   </ul>
 
 							</div>
@@ -145,7 +144,7 @@
 								<img src="{{url('storage/app/uploads/' . $image[0])}}" class="img-fluid" alt="{{$image[0]}}">
 							</a>
 							<div class="desc">
-								<h2><a href="#">{{isset($item->description) && !empty($item->description) ? $item->description : ''}}</a></h2>
+								<h2><a href="{{route('user.single_product',['id' => $item->id])}}">{{isset($item->description) && !empty($item->description) ? $item->description : ''}}</a></h2>
 								<span class="price">${{isset($item->price) && !empty($item->price) ? $item->price : ''}}</span>
 							</div>
 						</div>
