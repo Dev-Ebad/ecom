@@ -1,3 +1,7 @@
+<?php
+$activebar = 'contact';
+?>
+
 @include('user.header')
 
 		<div class="breadcrumbs">

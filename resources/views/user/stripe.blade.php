@@ -1,3 +1,7 @@
+<?php
+$activebar = 'checkout';
+?>
+
 @include('user.header')
 		<div class="breadcrumbs">
 			<div class="container">
@@ -15,7 +19,7 @@
 					<div class="col-md-12">
 						<div class="panel panel-default credit-card-box">
 							<div class="panel-heading display-table" >
-									<h3 class="panel-title" >Payment Details</h3>
+									<h3 class="panel-title" >Stripe checkout Form</h3>
 							</div>
 							<div class="panel-body">
 				
@@ -28,14 +32,14 @@
 				
 								<form 
 										role="form" 
-										action="{{ route('user.checkout') }}" 
+										action="{{ route('stripe.post') }}" 
 										method="post" 
 										class="require-validation"
 										data-cc-on-file="false"
 										data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
 										id="payment-form">
 									@csrf
-									<div class='form-row row'>
+									{{-- <div class='form-row row'>
 										<div class='col-xs-6 form-group required'>
 											<label class='control-label'>Name </label> 
 											<input class='form-control' type='text' name="name">
@@ -56,25 +60,24 @@
 											<input autocomplete='off' name="phone" class='form-control' size='11' type='text'>
 											<input autocomplete='off' name="price" class='form-control' value="{{isset($total) && !empty($total) ? $total : ''}}" type='hidden'>
 										</div>
-									</div>
+									</div> --}}
 
-									<div class='form-row row'>
-										<h3 class="mx-auto my-5">Card Information</h3>
+									<div class='form-row row m-5'>
 										<div class='col-xs-12 form-group required'>
 											<label class='control-label'>Name on Card</label> <input
 												class='form-control' size='4' type='text'>
 										</div>
 									</div>
 				
-									<div class='form-row row'>
-										<div class='col-xs-12 form-group card required'>
+									<div class='form-row row m-5'>
+										<div class='col-xs-12 form-group  required'>
 											<label class='control-label'>Card Number</label> <input
 												autocomplete='off' class='form-control card-number' size='20'
 												type='text'>
 										</div>
 									</div>
 				
-									<div class='form-row row'>
+									<div class='form-row row m-5'>
 										<div class='col-xs-12 col-md-4 form-group cvc required'>
 											<label class='control-label'>CVC</label> <input autocomplete='off'
 												class='form-control card-cvc' placeholder='ex. 311' size='4'
@@ -92,7 +95,7 @@
 										</div>
 									</div>
 				
-									<div class='form-row row'>
+									<div class='form-row row m-5'>
 										<div class='col-md-12 error form-group hide'>
 											<div class='alert-danger alert'>Please correct the errors and try
 												again.</div>
@@ -101,7 +104,12 @@
 				
 									<div class="row">
 										<div class="col-xs-12">
-											<button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (${{isset($total) && !empty($total) ? $total : ''}})</button>
+											<input type="hidden" value="{{isset($name) && !empty($name) ? $name : ''}}" name="name" placeholder="Enter full name">
+											<input type="hidden" value="{{isset($phone) && !empty($phone) ? $phone : ''}}" name="phone" placeholder="Enter phone">
+											<input type="hidden" value="{{isset($address) && !empty($address) ? $address : ''}}" name="address" placeholder="Enter address">
+											<input type="hidden" value="{{isset($products) && !empty($products) ? $products : ''}}" name="products" placeholder="Enter address">
+											<input type="text" name="bill" value="{{isset($bill) && !empty($bill) ? $bill : ''}}">
+											<button class="btn btn-primary btn-lg btn-block" style="background-color:#D44500;" type="submit">Pay Now ({{isset($bill) && !empty($bill) ? $bill : ''}})</button>
 										</div>
 									</div>
 										

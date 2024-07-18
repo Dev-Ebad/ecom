@@ -1,3 +1,7 @@
+<?php
+$activebar = 'about';
+?>
+
 @include('user.header')
 
 		<div class="breadcrumbs">

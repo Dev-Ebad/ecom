@@ -1,3 +1,7 @@
+<?php
+$activebar = 'cart';
+?>
+
 @include('user.header')
 
 		<div class="breadcrumbs">
@@ -33,7 +37,7 @@
 				</div>
 				<div class="row row-pb-lg">
 					<div class="col-md-12">
-						<div class="product-name d-flex">
+						<div class="product-name d-flex" >
 							<div class="one-forth text-left px-4">
 								<span>Product Details</span>
 							</div>
@@ -111,18 +115,37 @@
 								<div class="col-sm-4 text-center">
 									<div class="total">
 										<div class="sub">
-											<p><span>Subtotal:</span> <span class="subtotal">${{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}</span></p>
+											<p><span>Subtotal:</span><span class="subtotal">{{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}</span></p>
 											
 											{{-- <p><span>Delivery:</span> <span>$0.00</span></p>
 											<p><span>Discount:</span> <span>$45.00</span></p> --}}
 										</div>
 										<div class="grand-total">
-											<p><span><strong>Total:</strong></span> <span class="subtotal">${{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}</span></p>
+											<p><span><strong>Total:</strong></span> <span class="subtotal">{{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}</span></p>
 										</div>
-										<div class="grand-total">
-											<p><span><strong></strong></span> <span><a href="{{route('user.checkout-page' , ['total' => $subtotal])}}" class="btn btn-primary">Checkout</a>
+										<form action="{{route('stripe')}}" class="form-group">
+											<input class="form-control" type="text" name="name" value="{{old('name')}}" placeholder="Enter full name">
+											@error('name')
+												<span class="text-danger">{{$message}}</span>
+											@enderror
+											
+											<input class="form-control" type="number" name="phone" value="{{old('phone')}}" placeholder="Enter phone">
+											@error('phone')
+											<span class="text-danger">{{$message}}</span>
+											@enderror
+											
+											<input class="form-control" type="text" name="address" value="{{old('address')}}" placeholder="Enter address">
+											@error('address')
+											<span class="text-danger">{{$message}}</span>
+											@enderror
+
+											<input class="form-control subtotal" type="hidden" name="bill" value="{{isset($subtotal) && !empty($subtotal) ? $subtotal : ''}}">
+											<input  type="submit" name="checkout" class="btn btn-primary" style="background-color:#D44500;" value="proceed to checkout">
+										</form>
+										{{-- <div class="grand-total">
+											<p><span><strong></strong></span> <span><a href="{{route('user.checkout-page' , ['total' => $subtotal])}}" class="btn btn-primary" style="background-color:#D44500;">Checkout</a>
 											</span></p>
-										</div>
+										</div> --}}
 									</div>
 								</div>
 							</div>

@@ -13,4 +13,8 @@ class Order extends Model
     function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // function product(){
+    //     return $this->;
+    // }
 }

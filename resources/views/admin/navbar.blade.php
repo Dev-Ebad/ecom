@@ -370,7 +370,11 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Account Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                      @csrf
+                    </form>
+                    <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    href="javascript:void(0)">Logout</a>
                   </li>
                 </div>
               </ul>

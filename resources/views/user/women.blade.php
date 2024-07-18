@@ -1,3 +1,7 @@
+<?php
+$activebar = 'womens';
+?>
+
 @include('user.header')
 
 		<div class="breadcrumbs">
@@ -50,9 +54,9 @@
 								<div class="block-26 mb-2">
 									<h3>Size</h3>
 					               <ul>
-					                  <li><a href="javascript:void(0)" class="size">small</a></li>
-					                  <li><a href="javascript:void(0)" class="size">medium</a></li>
-					                  <li><a href="javascript:void(0)" class="size">large</a></li>
+					                  <li><a href="javascript:void(0)" class="size btn btn-primary" style="background-color:#D44500;">small</a></li>
+					                  <li><a href="javascript:void(0)" class="size btn btn-primary" style="background-color:#D44500;">medium</a></li>
+					                  <li><a href="javascript:void(0)" class="size btn btn-primary" style="background-color:#D44500;">large</a></li>
 					               </ul>
 
 					            </div>
@@ -71,7 +75,7 @@
 								<div class="product-entry border">
 									<a href="{{route('user.single_product',['id' => $item->id])}}" class="prod-img">
 										@if($image)
-											<img src="{{url('storage/app/uploads/' . $image[0])}}" class="img-fluid" alt="{{$image[0]}}">
+											<img  src="{{url('storage/app/uploads/' . $image[0])}}" class="img-fluid" alt="{{$image[0]}}">
 										@else
 											<img src="{{url('storage/app/uploads/no image icon.png')}}" class="img-fluid" alt="no Image">
 										@endif
@@ -85,14 +89,10 @@
 							@endforeach
 							@endif
 						</div>
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<div class="block-27">
-				               <ul>
-					              <li>{!! $products->links() !!}</li>
-				               </ul>
-				            </div>
-							</div>
+						<div class="d-felx justify-content-center">
+			
+							<li>{!! $products->links() !!}</li>
+				
 						</div>
 					</div>
 				</div>

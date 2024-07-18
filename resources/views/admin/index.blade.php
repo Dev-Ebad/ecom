@@ -1,3 +1,8 @@
+
+@php
+    $activebar = 'index';
+@endphp
+
 @include('admin.header')
   @include('admin.sidebar')
 

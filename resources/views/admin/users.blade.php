@@ -1,3 +1,7 @@
+@php
+    $activebar = 'users';
+@endphp
+
 @include('admin.header')
   @include('admin.sidebar')
 
@@ -22,29 +26,31 @@
                           <th>Name</th>
                           <th>Email</th>
                           <th>Address</th>
+                          <th>Role</th>
                           <th>Gender</th>
                           <th>Picture</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @if(!empty($registered_users))
+                        @foreach ($registered_users as $item)
                         <tr>
-                          @if(!empty($registered_users))
-                          @foreach ($registered_users as $item)
                           <td>{{isset($item->name) ? $item->name : ''}}</td> 
                           <td>{{isset($item->email) ? $item->email : ''}}</td> 
                           <td>{{isset($item->address) ? $item->address : ''}}</td> 
+                          <td>{{isset($item->role) ? $item->role : ''}}</td> 
                           <td>{{isset($item->gender) ? $item->gender : ''}}</td> 
                           <td><img src="{{url('storage/app/uploads' . $item->image)}}" alt=""></td> 
                           <td>
                             <a href="javascript:void(0)" onclick="Edit_user('{{isset($item->id) ? $item->id : ''}}')" class="btn btn-success">Edit</a>
                             <a href="javascript:void(0)" onclick="Delete_user('{{isset($item->id) ? $item->id : ''}}')" class="btn btn-danger">Delete</a>
                           </td> 
+                        </tr>
                           @endforeach
                           @endif
-                        </tr>
                       </tbody>
-                   
+                    </table>
                   </div>
                 </div>
               </div>

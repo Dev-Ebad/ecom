@@ -132,30 +132,32 @@ color:#69707a;
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
-								<li class="active"><a href="{{route('admin.index')}}">Home</a></li>
-								<li class="has-dropdown">
+								<li class="<?= (isset($activebar) && $activebar == 'index') ? 'active' : '' ?>"><a href="{{route('admin.index')}}">Home</a></li>
+								<li class="has-dropdown <?= (isset($activebar) && $activebar == 'mens') ? 'active' : '' ?>">
 									<a href="{{route('user.mens')}}">Men</a>
-									<ul class="dropdown">
+									{{-- <ul class="dropdown">
 										<li><a href="{{route('user.product_detail')}}">Product Detail</a></li>
 										<li><a href="cart.html">Shopping Cart</a></li>
 										<li><a href="checkout.html">Checkout</a></li>
 										<li><a href="order-complete.html">Order Complete</a></li>
-										<li><a href="add-to-wishlist.html">Wishlist</a></li>
-									</ul>
+										<li><a href="{{route('user.wishlist')}}">Wishlist</a></li>
+									</ul> --}}
 								</li>
-								<li><a href="{{route('user.womens')}}">Women</a></li>
-								<li><a href="{{route('user.about')}}">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li class="<?= (isset($activebar) && $activebar == 'womens') ? 'active' : '' ?>"><a href="{{route('user.womens')}}">Women</a></li>
+								<li class="<?= (isset($activebar) && $activebar == 'about') ? 'active' : '' ?>"><a href="{{route('user.about')}}">About</a></li>
+								<li class="<?= (isset($activebar) && $activebar == 'contact') ? 'active' : '' ?>"><a href="{{route('user.contact')}}">Contact</a></li>
+								<li class="cart <?= (isset($activebar) && $activebar == 'user_profile') ? 'active' : '' ?>">
+									<a href="{{route('user.user_profile')}}" id="login_user"><b> {{isset(Auth::user()->name) && !empty(Auth::user()->name) ? Auth::user()->name : ''}} </b></a></li>
 								<li class="cart">
-									<a href="{{route('user.user_profile')}}" id="login_user"><b> Welcome, {{Auth::user()->name}} </b></a></li>
-								<li class="cart">
+									@if(Auth::id())
 									<form action="{{ route('logout') }}" method="POST" id="logout-form">
 										@csrf
 									</form>
 									<a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
 									href="javascript:void(0)">Logout</a>
 								</li>
-								<li class="cart"><i class="icon-shopping-cart"></i><a href="{{route('user.cart')}}" id="count_cart"> Cart [0]</a></li>
+								@endif
+								<li class="cart <?= (isset($activebar) && $activebar == 'cart') ? 'active' : '' ?>"><i class="icon-shopping-cart"></i><a href="{{route('user.cart')}}" id="count_cart"> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>

@@ -25,7 +25,7 @@
       </div>
       <!-- End Logo Header -->
     </div>
-    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+    {{-- <div class="sidebar-wrapper scrollbar scrollbar-inner">
       <div class="sidebar-content">
         <ul class="nav nav-secondary">
           <li class="nav-item active">
@@ -50,7 +50,6 @@
             </div>
           </li>
           <ul>
-
             <li class="nav-item">
               <a data-bs-toggle="collapse" href="#base">
                 <i class="fas fa-layer-group"></i>
@@ -70,7 +69,6 @@
                 <span class="sub-item">Products</span>
               </a>
             </li>
-
           </ul>
           <li class="nav-section">
             <span class="sidebar-mini-icon">
@@ -245,6 +243,49 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> --}}
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse">
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+          <a
+            href="{{route('admin.index')}}"
+            class="list-group-item list-group-item-action py-2 ripple <?= (isset($activebar) && $activebar == 'index') ? 'active' : '' ?>"
+            aria-current="true"
+          >
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+          </a>
+          <a href="{{route('admin.users')}}" class="list-group-item list-group-item-action py-2 ripple <?= (isset($activebar) && $activebar == 'users') ? 'active' : '' ?>">
+            <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
+          </a>
+          <a href="{{route('admin.products')}}" class="list-group-item list-group-item-action py-2 ripple <?= (isset($activebar) && $activebar == 'products') ? 'active' : '' ?>"
+            ><i class="fas fa-lock fa-fw me-3"></i><span>Products</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
+            <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-globe fa-fw me-3"></i><span>International</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-building fa-fw me-3"></i><span>Partners</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple "
+            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
+          >
+        </div>
+      </div>
+    </nav>
   </div>
   <!-- End Sidebar -->

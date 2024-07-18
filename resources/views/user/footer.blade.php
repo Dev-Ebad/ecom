@@ -3,8 +3,7 @@
     <div class="container">
         <div class="row row-pb-md">
             <div class="col footer-col colorlib-widget">
-                <h4>About Footwear</h4>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+                <h4>Connect us</h4>
                 <p>
                     <ul class="colorlib-social-icons">
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -15,39 +14,15 @@
                 </p>
             </div>
             <div class="col footer-col colorlib-widget">
-                <h4>Customer Care</h4>
                 <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Returns/Exchange</a></li>
-                        <li><a href="#">Gift Voucher</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Special</a></li>
-                        <li><a href="#">Customer Services</a></li>
+                        <li><a href="{{route('user.contact')}}">Contact</a></li>
+                        <li><a href="{{route('user.about')}}">About</a></li>
+                        <li><a href="{{route('user.mens')}}">Mens</a></li>
+                        <li><a href="{{route('user.womens')}}">Womens</a></li>
                         <li><a href="#">Site maps</a></li>
                     </ul>
                 </p>
-            </div>
-            <div class="col footer-col colorlib-widget">
-                <h4>Information</h4>
-                <p>
-                    <ul class="colorlib-footer-links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                    </ul>
-                </p>
-            </div>
-
-            <div class="col footer-col">
-                <h4>News</h4>
-                <ul class="colorlib-footer-links">
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Exhibitions</a></li>
-                </ul>
             </div>
 
             <div class="col footer-col">
@@ -66,9 +41,8 @@
             <div class="col-sm-12 text-center">
                 <p>
                     <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Ebad Uddin ahmed</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
-                    <span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
                 </p>
             </div>
         </div>
@@ -186,12 +160,46 @@ function change_quantity(id){
                 subtotal += element.price * element.quantity;
             });
             console.log(subtotal)
-            $('.subtotal').text('$'+subtotal);
-            $('.subtotal').val('$'+subtotal);
+            $('.subtotal').text(subtotal);
+            $('.subtotal').val(subtotal);
             let total_price = res.cart_data[0].price * res.cart_data[0].quantity
             total.text('$'+total_price);
         }
     })
+}
+
+function profile(id){
+console.log(id)
+
+$.ajax({
+    url : "{{route('user.account_details')}}",
+    type : "POST",
+    data : {
+        user_id : id,
+        _token : "{{csrf_token()}}"
+    },
+    success : function(res){
+        console.log(res.view)
+        $('#appnd_acc').html(res.view);
+    }
+})
+}
+
+function orders(id){
+console.log(id)
+
+$.ajax({
+    url : "{{route('user.orders')}}",
+    type : "POST",
+    data : {
+        user_id : id,
+        _token : "{{csrf_token()}}"
+    },
+    success : function(res){
+        console.log(res)
+        $('#appnd_order').html(res.view);
+    }
+})
 }
 
 
@@ -222,7 +230,7 @@ let size = $('.size');
 let brand_man = $('.brand_man');
 let size_man = $('.size_man');
 
-    brand.on('click', function(){
+brand.on('click', function(){
         let brand_val = $(this).text()
         $.ajax({
             url : "{{route('user.filter_brand')}}",
@@ -253,9 +261,10 @@ let size_man = $('.size_man');
             }
         })
     })
-
+    
     brand_man.on('click', function(){
         let brand_val = $(this).text()
+        console.log(brand_man, size_man);
         $.ajax({
             url : "{{route('user.filter_brand')}}",
             method : "POST",

@@ -30,8 +30,8 @@ class AdminController extends Controller
     }
 
     public function create_user(Request $request){
-        // dd($request->all());
 
+        // dd($request->all());
         $user_data = $request->except('profile');
         $imageName = '';
         if($request->hasFile('profile')){
@@ -39,10 +39,12 @@ class AdminController extends Controller
             $imageName = $image->getClientOriginalName();
             $image->storeAs('storage/app/uplods', $imageName);
         }
+
         $rand_pass = Str::random(5);
         $user_data['password'] = Hash::make($rand_pass);
         $user_data['profile'] = $imageName;
-        $user_data['role'] = 'user';
+        // $user_data['role'] = $request->role;
+        // dd($user_data);
         $suc = User::create($user_data);
 
         if($suc) {
@@ -68,9 +70,12 @@ class AdminController extends Controller
     }
 
     public function edit_user(Request $request){
+
         $user_data = User::find($request->user_id);
         // print_r($user_data); die;
-        return response()->json($user_data);
+        $view = view('includes.edit_user' , compact('user_data'))->render();
+        
+        return ['view' => $view];
     }
 
 
@@ -105,7 +110,7 @@ class AdminController extends Controller
 
     // fetch product
     public function products(){
-        $products = Product::paginate(15);
+        $products = Product::paginate(10);
         return view('admin.products')->with(compact('products'));
     }
 
@@ -189,6 +194,12 @@ class AdminController extends Controller
         }
     }
 
+
+     // check duplicate email
+     public function checkEmail(Request $request){
+        $check_user = User::where('email',$request->email)->exists();
+        return $check_user;
+     }
 
 
 

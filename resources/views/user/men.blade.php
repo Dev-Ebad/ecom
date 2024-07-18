@@ -1,3 +1,7 @@
+<?php
+$activebar = 'mens';
+?>
+
 @include('user.header')
 
 		<div class="breadcrumbs">
@@ -75,9 +79,9 @@
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
 							   <ul>
-								  <li><a href="javascript:void(0)" class="size_man">small</a></li>
-								  <li><a href="javascript:void(0)" class="size_man">medium</a></li>
-								  <li><a href="javascript:void(0)" class="size_man">large</a></li>
+								  <li><a href="javascript:void(0)" class="size_man btn btn-primary" style="background-color:#D44500;">small</a></li>
+								  <li><a href="javascript:void(0)" class="size_man btn btn-primary" style="background-color:#D44500;">medium</a></li>
+								  <li><a href="javascript:void(0)" class="size_man btn btn-primary" style="background-color:#D44500;">large</a></li>
 							   </ul>
 
 							</div>
@@ -132,7 +136,7 @@
 						</div> --}}
 					</div>
 				</div>
-				<div class="row row-pb-md">
+				<div class="row row-pb-md" id="appndProd">
 					@if(!empty($products))
 					@foreach ($products as $item)
 					@php
@@ -152,14 +156,12 @@
 					@endforeach
 					@endif
 				</div>
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<div class="block-27">
-					   <ul>
-						  <li>{!! $products->links() !!}</li>
-					   </ul>
-					</div>
-					</div>
+			</div>
+		</div>
+				<div class="d-felx justify-content-center">
+			
+					<li>{{ $products->links() }}</li>
+		
 				</div>
 			</div>
 		</div>

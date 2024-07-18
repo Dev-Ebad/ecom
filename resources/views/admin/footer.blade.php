@@ -2,7 +2,6 @@
 
 <script>
   function Edit_user(id){
-
     $.ajax({
       url : "{{route('admin.edit_user')}}",
       type : "POST",
@@ -11,17 +10,10 @@
         _token : "{{csrf_token()}}"
       },
       success : function(res){
-        console.log(res.name);
-        $('#user_id').val(res.id);
-        $('#edit_name').val(res.name);
-        $('#edit_email').val(res.email);
-        $('#edit_address').val(res.address);
-        $('#EditUserModal').modal('show');
-        if(res.gender == 'male'){
-          $("input[value = 'male']").attr('checked', true)
-        }else if(res.gender == 'female'){
-          $("input[value = 'female']").attr('checked', true)
-        }
+        console.log(res);
+        $('#appnd_edit_user').html(' ');
+        $('#appnd_edit_user').append(res.view);
+        $('#EditUserModal').modal('show')
       }
     })
 
@@ -39,6 +31,7 @@
       },
       success : function(res){
         console.log(res);
+        $('#edit_product_appnd').html(' ');
         $('#edit_product').modal('show');
         $('#edit_product_appnd').append(res);
       }
@@ -82,6 +75,27 @@
     // })
     $('#deleteProductModal').modal('show');
   }
+
+  // check duplicate email in database
+  function Check_Email() {
+        $('#emailerror').text(' ');
+        let email = $('#useremail').val();
+        $.ajax({
+            url: "{{ route('admin.checkEmail') }}",
+            type: "POST",
+            data: {
+                email: email,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(res) {
+                if (res == true) {
+                    $('.emailerror').text('Email already exist');
+                } else {
+                    $('#addUserForm').submit();
+                }
+            }
+        })
+    }
 
   // function check_empty(){
 
